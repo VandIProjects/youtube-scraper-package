@@ -1,0 +1,94 @@
+# YouTube Scraper Configuration
+
+# API Settings
+api_key_env_var: "YOUTUBE_API_KEY"  # Environment variable name for YouTube API key
+
+# Output Settings
+output_directory: "data"  # Directory to store scraped data
+output_format: "json"     # Output format (json or csv)
+
+# Logging Settings
+log_directory: "logs"     # Directory to store log files
+log_level: "INFO"         # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+# Scraping Settings
+max_results: 50           # Maximum number of videos to retrieve per channel/playlist
+comment_count: 100        # Maximum number of comments to retrieve per video
+rate_limit_pause: 1       # Pause between API requests in seconds to respect rate limits
+
+# Scheduler Settings
+timezone: "UTC"           # Timezone for scheduler
+max_threads: 20           # Maximum number of threads for scheduler
+max_processes: 5          # Maximum number of processes for scheduler
+
+# Scheduled Jobs
+# Examples of different job types and schedules
+scheduled_jobs:
+  # Channel scrape job (daily at midnight)
+  - type: "channel"
+    id: "example_channel_daily"
+    channel_id: "UCxxx"  # Replace with actual channel ID
+    include_comments: false
+    schedule_type: "cron"
+    cron:
+      hour: "0"
+      minute: "0"
+
+  # Video scrape job (every 6 hours)
+  - type: "video"
+    id: "example_video_6h"
+    video_id: "xxx"  # Replace with actual video ID
+    include_comments: true
+    schedule_type: "interval"
+    interval:
+      hours: 6
+
+  # Playlist scrape job (weekly on Sunday)
+  - type: "playlist"
+    id: "example_playlist_weekly"
+    playlist_id: "xxx"  # Replace with actual playlist ID
+    include_comments: false
+    schedule_type: "cron"
+    cron:
+      day_of_week: "0"  # Sunday
+      hour: "1"
+      minute: "0"
+
+  # Search scrape job (every 12 hours)
+  - type: "search"
+    id: "example_search_12h"
+    query: "example search query"
+    include_comments: false
+    schedule_type: "interval"
+    interval:
+      hours: 12
+
+# Channel IDs to scrape (for batch processing)
+channels:
+  - id: "UCxxx"  # Replace with actual channel ID
+    name: "Example Channel 1"
+    include_comments: false
+  - id: "UCyyy"  # Replace with actual channel ID
+    name: "Example Channel 2"
+    include_comments: true
+
+# Video IDs to scrape (for batch processing)
+videos:
+  - id: "xxx"  # Replace with actual video ID
+    include_comments: true
+  - id: "yyy"  # Replace with actual video ID
+    include_comments: true
+
+# Playlist IDs to scrape (for batch processing)
+playlists:
+  - id: "xxx"  # Replace with actual playlist ID
+    include_comments: false
+  - id: "yyy"  # Replace with actual playlist ID
+    include_comments: false
+
+# Search queries to scrape (for batch processing)
+searches:
+  - query: "example search query 1"
+    include_comments: false
+  - query: "example search query 2"
+    include_comments: false
