@@ -38,3 +38,6 @@ colorlog>=6.7.0
 # Optional: For report generation
 # jinja2>=3.1.2
 # markdown>=3.4.1
+requests
+PyGithub
+
